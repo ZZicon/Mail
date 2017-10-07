@@ -5,4 +5,5 @@ package com.example.administrator.maillist.activity;
  */
 
 public class MainActivityTest {
+
 }

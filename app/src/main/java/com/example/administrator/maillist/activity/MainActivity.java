@@ -4,71 +4,56 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
+import android.widget.RadioGroup;
+
+import com.example.administrator.maillist.R;
+import com.example.administrator.maillist.fragment.DialFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.base.XFragmentAdapter;
-import cn.droidlover.xdroidmvp.demo.R;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
 
 /**
- * Created by wanglei on 2016/12/22.
+ * Created by Administrator on 2017/10/5.
  */
 
 public class MainActivity extends XActivity {
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.tabLayout)
-    TabLayout tabLayout;
-    @BindView(R.id.viewPager)
-    ViewPager viewPager;
 
-    List<Fragment> fragmentList = new ArrayList<>();
-    String[] titles = {"首页", "干货", "妹子"};
+    //获取控件
+    @BindView(R.id.content_view_pager)
+    ViewPager mViewPager;
+    @BindView(R.id.top_tabLayout)
+    TabLayout mTabLayout;
+//    @BindView(R.id.top_radio_group)
+//    RadioGroup mRadioGroup;
 
     XFragmentAdapter adapter;
-
+    List<Fragment> fragmentList = new ArrayList<>();
+    String[] titles = {"拨号", "联系人", "信息", "个人中心"};
+//    String[] titles = {"Dial", "Contacts", "Message", "Personal"};
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        setSupportActionBar(toolbar);
-
         fragmentList.clear();
-        fragmentList.add(HomeFragment.newInstance());
-        fragmentList.add(GanhuoFragment.newInstance());
-        fragmentList.add(GirlFragment.newInstance());
+        fragmentList.add(DialFragment.newInstance());
+        fragmentList.add(DialFragment.newInstance());
+        fragmentList.add(DialFragment.newInstance());
 
         if (adapter == null) {
             adapter = new XFragmentAdapter(getSupportFragmentManager(), fragmentList, titles);
         }
-        viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(3);
+        mViewPager.setAdapter(adapter);
+        mViewPager.setOffscreenPageLimit(4);
 
-        tabLayout.setupWithViewPager(viewPager);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
-    }
-
-    @Override
-    public int getOptionsMenuId() {
-        return R.menu.menu_main;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_droid:
-                AboutActivity.launch(context);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package cn.droidlover.xdroidmvp.demo.widget;
+package com.example.administrator.maillist.widget;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
-import cn.droidlover.xdroidmvp.demo.R;
+import com.example.administrator.maillist.R;
 import cn.droidlover.xdroidmvp.kit.KnifeKit;
 
 /**
